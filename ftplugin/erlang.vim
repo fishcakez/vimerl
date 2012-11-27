@@ -4,7 +4,7 @@
 " Contributors: Ricardo Catalinas Jiménez <jimenezrick@gmail.com>
 "               Eduardo Lopez (http://github.com/tapichu)
 " License:      Vim license
-" Version:      2012/08/14
+" Version:      2012/11/25
 
 if exists('b:did_ftplugin')
 	finish
@@ -46,6 +46,8 @@ function s:SetErlangOptions()
 	setlocal commentstring=%%s
 	setlocal formatoptions+=ro
 	setlocal suffixesadd=.erl
+	let libs = substitute(system('which erl'), '/bin/erl', '/lib/erlang/lib/**/src/', '')
+	execute 'setlocal path+=' . libs
 	let &l:keywordprg = g:erlang_keywordprg
 endfunction
 
